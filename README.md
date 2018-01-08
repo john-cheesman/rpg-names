@@ -1,6 +1,6 @@
 # RPG Names
 
-A simple command line interface for getting RPG charachter names from [genr8rs.com](http://genr8rs.com/Generator/Rpg/NameGenerator).
+A simple command line interface for getting RPG character names from [genr8rs.com](http://genr8rs.com/Generator/Rpg/NameGenerator).
 
 ## Installation
 
@@ -69,7 +69,7 @@ Either male or female, defaults to female
     $ rpg-names -f
     $ rpg-names --first-name-only
 
-Just get first names and ommit second names, defaults to false
+Just get first names and omit second names, defaults to false
 
 ### Help 
 
