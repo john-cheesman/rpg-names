@@ -12,7 +12,7 @@ program
     .option('-g, --genre [genre]', 'Either fantasy or scifi, defaults to fantasy')
     .option('-r, --race [race]', 'Which race e.g. human, defaults to any')
     .option('-G, --gender [gender]', 'Either male or female, defaults to female')
-    .option('-f, --first-name-only', 'Just get first names and ommit second names, defaults to false')
+    .option('-f, --first-name-only', 'Just get first names and omit second names, defaults to false')
     .parse(process.argv)
 
 const quantity = parseInt(program.quantity, 10) || 10
