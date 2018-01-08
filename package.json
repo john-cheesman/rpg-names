@@ -1,0 +1,13 @@
+{
+  "name": "rpg-names",
+  "version": "1.0.0",
+  "description": "Get RPG names from genr8rs.com",
+  "bin": {
+    "rpg-names": "index.js"
+  },
+  "author": "John Cheesman",
+  "license": "MIT",
+  "dependencies": {
+    "commander": "^2.12.2"
+  }
+}
