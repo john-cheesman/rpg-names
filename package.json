@@ -7,6 +7,13 @@
   },
   "author": "John Cheesman",
   "license": "MIT",
+  "keywords": [
+    "rpg",
+    "generator",
+    "cli",
+    "characters",
+    "names"
+  ],
   "dependencies": {
     "commander": "^2.12.2"
   }
