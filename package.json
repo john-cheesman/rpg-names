@@ -1,6 +1,6 @@
 {
   "name": "rpg-names",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Get RPG names from genr8rs.com",
   "bin": {
     "rpg-names": "index.js"
