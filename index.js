@@ -1,12 +1,12 @@
 #! /usr/bin/env node
 
 const program = require('commander')
-const https = require('https')
+const axios = require('axios')
 const fs = require('fs')
-const endpoint = 'https://api.genr8rs.com/Generator/Rpg/NameGenerator'
+const endpoint = 'https://api.genr8rs.com/Content/Rpg/NameGenerator'
 
 program
-    .version('1.0.0')
+    .version('1.1.0')
     .option('-q, --quantity [number]', 'The number of names to get, defaults to 10')
     .option('-o, --output [file]', 'The file to output names to, defaults to names.txt')
     .option('-g, --genre [genre]', 'Either fantasy or scifi, defaults to fantasy')
@@ -22,44 +22,40 @@ const race = program.race || 'any'
 const gender = program.gender || 'female'
 const firstNameOnly = program.firstNameOnly || false
 
-function getName(genre, race, gender, names) {
-    let data = '',
-        name = ''
+async function getName(genre, race, gender) {
+    let name = ''
 
-    https.get(`${endpoint}?_sGenre=${genre}&_sRace=${race}&_sGender=${gender}`, (resp) => {
-        resp.on('data', (chunk) => {
-            data += chunk
-        })
-
-        resp.on('end', () => {
-            name = JSON.parse(data)._sResult
-
-            if (firstNameOnly) {
-                name = name.split(' ')[0]
-            }
-
-            getNames(names, name)
-        })
-    }).on("error", (err) => {
+    try {
+        name = await axios.get(`${endpoint}?_sGenre=${genre}&_sRace=${race}&_sGender=${gender}`)
+    }
+    catch(err) {
         console.err("Error: " + err.message)
-    })
+    }
 
-    return data
+    return name
 }
 
-let names = []
+async function getNames() {
+    let promises = []
+    let names = []
 
-function getNames(names, name) {
-    if (name && names.indexOf(name) < 0) {
+    for (let i = 0; i < quantity; i++) {
+        promises.push(getName(genre, race, gender))
+    }
+    
+    let responses = await Promise.all(promises)
+
+    responses.forEach(response => {
+        let name = response.data._sResult
+
+        if (firstNameOnly) {
+            name = name.split(' ')[0]
+        }
+
         names.push(name)
-    }
+    })
 
-    if (names.length < (program.quantity || 10)) {
-        getName(genre, race, gender, names)
-    }
-    else {
-        writeNames(names.join(','))
-    }
+    writeNames(names.join(','))
 }
 
 function writeNames(names) {
@@ -69,4 +65,4 @@ function writeNames(names) {
     })
 }
 
-getNames(names)
+getNames()

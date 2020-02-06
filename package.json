@@ -1,6 +1,6 @@
 {
   "name": "rpg-names",
-  "version": "1.0.2",
+  "version": "1.1.0",
   "description": "Get RPG names from genr8rs.com",
   "bin": {
     "rpg-names": "index.js"
@@ -15,10 +15,11 @@
     "names"
   ],
   "dependencies": {
+    "axios": "^0.19.2",
     "commander": "^2.12.2"
   },
   "repository": {
-      "type" : "git",
-      "url" : "https://github.com/john-cheesman/rpg-names.git"
+    "type": "git",
+    "url": "https://github.com/john-cheesman/rpg-names.git"
   }
 }
