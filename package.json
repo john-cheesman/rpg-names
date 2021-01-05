@@ -15,7 +15,7 @@
     "names"
   ],
   "dependencies": {
-    "axios": "^0.19.2",
+    "axios": "^0.21.1",
     "commander": "^2.12.2"
   },
   "repository": {
